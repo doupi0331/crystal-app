@@ -19,5 +19,41 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
+#zh-TW.mongoid.errors.models.user.attributes.email.blank
+zh-TW:
+  mongoid:
+    models:
+      user: "管理員"
+    attributes:
+      user:
+        email: "\"電子信箱\""
+        password: "\"密碼\""
+        first_name: "\"名\""
+        last_name: "\"姓\""
+        password_confirmation: ""
+        current_password: ""
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "為必填"
+              taken: "已被註冊，請更換"
+            password:
+              blank: "為必填"
+            password_confirmation:
+              confirmation: "請確認您的密碼"
+            current_password:
+              blank: "請輸入目前的密碼以確認您的更改"
+            first_name:
+              blank: "為必填"
+              too_short: "字數太短，至少鍵入2個字"
+              too_long: "字數太長，最多10個字"
+            last_name:
+              blank: "為必填"
+              too_short: "字數太短，至少鍵入1個字"
+              too_long: "字數太長，最多5個字"
+  
+
 en:
   hello: "Hello world"

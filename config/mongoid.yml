@@ -1,3 +1,19 @@
+production:
+  clients:
+    default:
+     # The standard MongoDB connection URI allows for easy
+     # replica set connection setup.
+     # Use environment variables or a config file to keep your
+     # credentials safe e.g. <%= ENV['MONGODB_URI'] %>.
+     uri: mongodb://heroku_bqt6w1vs:unk27607hcsv2bmjf4bc03ofd3@ds111549.mlab.com:11549/heroku_bqt6w1vs
+
+     options:
+       # The default timeout is 5, which is the time in seconds
+       # for a connection to time out.
+       # We recommend 15 because it allows for plenty of time
+       # in most operating environments.
+       connect_timeout: 15
+
 development:
   # Configure available database clients. (required)
   clients:

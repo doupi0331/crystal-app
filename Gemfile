@@ -23,6 +23,10 @@ gem 'coffee-rails', '~> 4.2'
 gem 'mongoid', '~> 6.0.0'
 gem 'bson_ext'
 
+gem 'devise'
+gem 'twitter-bootstrap-rails'
+gem 'devise-bootstrap-views'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
