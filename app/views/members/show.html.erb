@@ -1,0 +1,17 @@
+<div class="row">
+	<div class="col-md-9">
+		<h2><%= @member.full_name %></h2>
+	</div>
+	<div class="col-md-3 member-action">
+		<%= link_to t('.edit', default: 'Edit'), edit_member_path(@member),
+										class: 'btn btn-default' %>
+		<%= link_to t('.destroy', default: 'Delete'), member_path(@member), method: :delete,
+								data: { confirm: t('.confirm', default: 'Are you sure?') },
+								class: 'btn btn-danger' %>
+	</div>
+</div>
+<hr />
+<%= render 'member' %>
+<div>
+	[ <%= link_to t('.back', default: "◀ Back"), members_path%> ]
+</div>

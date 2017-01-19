@@ -7,7 +7,8 @@
 				<%= f.label :last_name %>
 			</div>
 			<div class="col-sm-4">
-				<%= f.text_field :last_name, class: "form-control", placeholder: "Enter your last name", autofocus: true %>
+				<%= f.text_field :last_name, class: "form-control", 
+						placeholder: t('.enter_your_last_name', default: "Enter your last name"), autofocus: true %>
 			</div>
 		</div>
 		<div class="form-group">
@@ -15,7 +16,8 @@
 				<%= f.label :first_name %>
 			</div>
 			<div class="col-sm-4">
-				<%= f.text_field :first_name, class: "form-control", placeholder: "Enter your first name" %>
+				<%= f.text_field :first_name, class: "form-control", 
+					placeholder: t('.enter_your_first_name', default: "Enter your first name") %>
 			</div>
 		</div>
 		<div class="form-group">
@@ -23,7 +25,8 @@
 				<%= f.label :phone %>
 			</div>
 			<div class="col-sm-4">
-				<%= f.text_field :phone, class: "form-control", placeholder: "Enter your cellphone number" %>
+				<%= f.text_field :phone, class: "form-control", 
+					placeholder: t('.enter_your_phone', default: "Enter your cellphone number") %>
 			</div>
 		</div>
 		<div class="form-group">
@@ -31,7 +34,8 @@
 				<%= f.label :birthdate %>
 			</div>
 			<div class="col-sm-4">
-				<%= f.text_field :birthdate, class: 'datepicker form-control', placeholder: "Select your birthdate" %>
+				<%= f.text_field :birthdate, class: 'datepicker form-control', 
+					placeholder: t('.select_your_birthdate', default: "Select your birthdate") %>
 			</div>
 		</div>
 		<div class="form-group">
@@ -39,7 +43,8 @@
 				<%= f.label :password %>
 			</div>
 			<div class="col-sm-4">
-				<%= f.password_field :password, class: "form-control", placeholder: "Enter password" %>
+				<%= f.password_field :password, class: "form-control", 
+					placeholder: t('.enter_password', default: "Enter password") %>
 			</div>
 		</div>
 		<div class="form-group">
@@ -47,17 +52,19 @@
 				<%= f.label :password_confirmation %>
 			</div>
 			<div class="col-sm-4">
-				<%= f.password_field :password_confirmation, class: "form-control", placeholder: "Enter password" %>
+				<%= f.password_field :password_confirmation, class: "form-control", 
+					placeholder: t('.enter_password', default: "Enter password") %>
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="col-sm-offset-5 col-sm-2">
-				<%= f.submit(@member.new_record? ? "Create a member" : "Update the member", class: "btn btn-primary btn-lg") %>
+				<%= f.submit(@member.new_record? ? t('.create', default: "Create a member") : t('.update', default: "Update the member"), 
+					class: "btn btn-primary btn-lg") %>
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="col-sm-offset-5 col-sm-2">
-				[ <%= link_to "Cancel", members_path%> ]
+				[ <%= link_to t('.back', default: "◀ Back"), @member.new_record? ? members_path : member_path(@member)%> ]
 			</div>
 		</div>
 		<% end %>

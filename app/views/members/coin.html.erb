@@ -1,0 +1,26 @@
+<%= render 'shared/errors', obj: @member %>
+<h2>加值</h2>
+<hr />
+<%= render 'member'%>
+
+<%= form_tag add_coin_path(@member), method: :post do %>
+<div class="row">
+	<div class="col-md-2 col-right">
+		<h4><%= t( '.amount', default: "Amount：" ) %></h4>
+	</div>
+	<div class="col-md-10">
+		<%= text_field_tag :coin_param, params[:coin_param],
+		placeholder: t('.enter_amount', default: "Enter amount of money"), autofocus: true,
+		class: 'form-control' %>
+	</div>
+</div>
+<div class="member-top">
+	<div class="col-md-10 col-md-offset-2">
+		<%= submit_tag t('.submit', default: "Submit"), class: "btn btn-success btn-block"%>
+	</div>
+</div>
+<% end %>
+
+<div class="member-top">
+	[ <%= link_to t('.back', default: "◀ Back"), members_path %> ]
+</div>

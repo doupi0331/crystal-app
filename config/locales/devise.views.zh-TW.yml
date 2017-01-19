@@ -169,9 +169,47 @@ zh-TW:
       unlocked: "您的帳號已被解鎖，現在已經登入。"
   members:
     index:
+      title: "會員管理"
+      enter_the_phone_number: "請輸入手機號碼"
+      search: "搜尋"
+      new: "新增會員"
       full_name: "姓名"
       phone: "手機"
       coin: "儲值金"
+      show: "細節"
+      add_coin: "加值"
+      trade: "新增消費"
+      cant_find: "找不到此會員"
+    show:
+      edit: "修改"
+      destroy: "刪除"
+      confirm: "確定要刪除嗎？ 刪除後便無法復原。"
+      back: "◀ 返回"
+    member:
+      full_name: "會員姓名："
+      phone: "手機號碼："
+      birthdate: "生日："
+      coin: "儲值金："
+    coin:
+      back: "◀ 返回"
+    form:
+      enter_your_last_name: "請輸入您的姓"
+      enter_your_first_name: "請輸入您的名"
+      enter_your_phone: "請輸入您的手機號碼"
+      select_your_birthdate: "請選擇您的生日"
+      enter_password: "請輸入密碼"
+      create: "新增會員"
+      update: "修改會員"
+      back: "◀ 返回"
+    coin:
+      amount: "金額："
+      submit: "確認加值"
+      enter_amount: "請輸入金額"
+      back: "◀ 返回"
+    created: "會員新增成功"
+    updated: "會員更新成功"
+    deleted: "會員刪除成功"
+    add_coin_fail: "請輸入正確的金額"
   errors:
     messages:
       already_confirmed: "已經驗證，請直接登入。"

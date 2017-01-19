@@ -3,5 +3,9 @@ Rails.application.routes.draw do
   resources :members
   
   root 'pages#index'
+  get 'search_members' => 'members#search' 
+  get 'coin_member/:id' => 'members#coin', :as => "coin_member"
+  post 'add_coin/:id' => 'members#add_coin', :as => "add_coin"
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

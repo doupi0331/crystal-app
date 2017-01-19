@@ -24,4 +24,21 @@ class Member
     return "#{last_name}#{first_name}"
   end
   
+  def self.search(param)
+    return Member.none if param.blank?
+    
+    param.strip! #清除空白
+    param.downcase!
+    
+    return phone_matches(param)
+  end
+  
+  def self.phone_matches(param)
+    return matches('phone', param)
+  end
+  
+  def self.matches(field_name, param)
+    return where("#{field_name}" => /.*#{param}.*/i)
+  end
+  
 end
