@@ -40,6 +40,8 @@ GEM
       tzinfo (~> 1.1)
     arel (7.1.4)
     bcrypt (3.1.11)
+    bootstrap-datepicker-rails (1.6.4.1)
+      railties (>= 3.0)
     bson (4.2.1)
     bson_ext (1.5.1)
     builder (3.2.3)
@@ -193,6 +195,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt (~> 3.1.7)
+  bootstrap-datepicker-rails
   bson_ext
   byebug
   coffee-rails (~> 4.2)

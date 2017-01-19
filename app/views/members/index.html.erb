@@ -1,0 +1,33 @@
+<h2>會員管理</h2>
+<hr />
+<%= link_to "測試新增會員", new_member_path, class: "btn btn-default" %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= t('.full_name', default: 'Full name')%></th>
+      <th><%= t('.phone', default: 'Phone') %></th>
+      <th><%= t('.coin', default: 'Coin') %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @members.each do |member| %>
+      <tr>
+        <td><%= member.full_name %></td>
+        <td><%= member.phone %></td>
+        <td><%= member.coin %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_member_path(member), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      member_path(member),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

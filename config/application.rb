@@ -1,5 +1,5 @@
 require_relative 'boot'
-
+require 'bootstrap-datepicker-rails'
 require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems

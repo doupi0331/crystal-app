@@ -1,16 +1,61 @@
 zh-TW:
-  activerecord:
-    attributes:
-      user:
-        current_password: "當前密碼"
-        email: "電子郵箱"
-        password: "密碼"
-        password_confirmation: "密碼確認"
-        remember_me: "記憶登入訊息"
-        reset_password_token: 
-        unlock_token: 
+  mongoid:
     models:
-      user: "用戶"
+      user: "管理員"
+    attributes:
+      member:
+        first_name: "名"
+        last_name: "姓"
+        phone: "手機號碼"
+        birthdate: "生日"
+        password: "密碼"
+        password_confirmation: "確認密碼"
+      user:
+        email: "\"電子信箱\""
+        password: "\"密碼\""
+        first_name: "\"名\""
+        last_name: "\"姓\""
+        password_confirmation: ""
+        current_password: ""
+    errors:
+      models:
+        member:
+          attributes:
+            first_name:
+              blank: "為必填"
+              too_short: "字數太短，至少鍵入2個字"
+              too_long: "字數太長，最多20個字"
+            last_name: 
+              blank: "為必填"
+              too_short: "字數太短，至少鍵入1個字"
+              too_long: "字數太長，最多10個字"
+            phone: 
+              blank: "為必填"
+            birthdate:
+              blank: "為必填"
+            password:
+              blank: "為必填"
+            password_confirmation:
+              confirmation: "與 密碼 不相符，請確認您的密碼"
+        user:
+          attributes:
+            email:
+              blank: "為必填"
+              taken: "已被註冊，請更換"
+            password:
+              blank: "為必填"
+            password_confirmation:
+              confirmation: "請確認您的密碼"
+            current_password:
+              blank: "請輸入目前的密碼以確認您的更改"
+            first_name:
+              blank: "為必填"
+              too_short: "字數太短，至少鍵入2個字"
+              too_long: "字數太長，最多10個字"
+            last_name:
+              blank: "為必填"
+              too_short: "字數太短，至少鍵入1個字"
+              too_long: "字數太長，最多5個字"
   devise:
     confirmations:
       confirmed: "您的帳號已通過驗證，現在您已成功登入。"
@@ -122,6 +167,11 @@ zh-TW:
       send_instructions: "您將在幾分鐘後收到一封電子郵件，內有將帳號解除鎖定的步驟說明。"
       send_paranoid_instructions: "如果您的帳號已存在，您的電子信箱將會收到如何解鎖帳號的指示。"
       unlocked: "您的帳號已被解鎖，現在已經登入。"
+  members:
+    index:
+      full_name: "姓名"
+      phone: "手機"
+      coin: "儲值金"
   errors:
     messages:
       already_confirmed: "已經驗證，請直接登入。"
@@ -132,3 +182,4 @@ zh-TW:
       not_saved:
         one: "有一個錯誤導致 %{resource} 不能被儲存："
         other: "有 %{count} 個錯誤導致 %{resource} 不能被儲存："
+  
