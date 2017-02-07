@@ -3,6 +3,9 @@ class Member
   include Mongoid::Timestamps
   include ActiveModel::SecurePassword
   
+  # relations
+  has_many :trades, dependent: :destroy
+  
   # validations
   validates :first_name, presence: true, length: { minimum: 2, maximum: 20 }
   validates :last_name, presence: true, length: { minimum: 1, maximum: 10 }

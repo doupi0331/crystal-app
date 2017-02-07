@@ -1,0 +1,45 @@
+<div>
+  	<h4><%= t('.trade_list', default: 'Trade list')%></h4>
+	<% if @member.trades %>
+		<% if @member.trades.size > 0 %>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th><%= t('.trade_date', default: 'Trade date')%></th>
+						<th><%= t('.trade_name', default: 'Trade Name') %></th>
+						<th><%= t('.total', default: 'Coin') %></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @member.trades.each do |trade| %>
+					<tr>
+						<td><%= trade.trade_date %></td>
+						<td><%= trade.trade_name %></td>
+						<td>
+							<% if trade.trade_type == "I" %>
+								<span style="color: green;">
+									<%= "#{trade.total} #{t('.dollars', default: 'Dollars')}" %>
+								</span>
+							<% else %>
+								<span style="color: red;">
+									<%= "#{trade.total} #{t('.dollars', default: 'Dollars')}" %>
+								</span>
+							<% end %>
+						</td>
+						<td>
+							<%= link_to t('.show', default: 'Show'), trade_path(:id => trade.id, :member_id => @member.id), class: 'btn btn-default btn-xs'%>
+							<%= link_to t('.destroy', default: 'Delete'), trade_path(:id => trade.id, :member_id => @member.id), method: :delete, 
+										data: {confirm: t('.confirm', default: 'Are you sure?')}, class: 'btn btn-danger btn-xs'%>
+						</td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+		<% else %>
+			<div class="alert alert-warning">
+				<%= t('.no_data', default: 'You dont have any trades.')%>
+			</div>
+		<% end %>
+	<% end %>
+</div>

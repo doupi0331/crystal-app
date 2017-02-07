@@ -28,7 +28,7 @@
 			<%= t('.coin', default: "Coin：")%>
 		</div>
 		<div class="col-md-4">
-			<%= @member.coin %>
+			<%= "#{@member.coin} #{t('.dollars', default: 'Dollars')}" %>
 		</div>
 	</div>
 </div>

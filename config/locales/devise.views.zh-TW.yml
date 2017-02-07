@@ -180,6 +180,7 @@ zh-TW:
       add_coin: "加值"
       trade: "新增消費"
       cant_find: "找不到此會員"
+      dollars: "元"
     show:
       edit: "修改"
       destroy: "刪除"
@@ -190,6 +191,7 @@ zh-TW:
       phone: "手機號碼："
       birthdate: "生日："
       coin: "儲值金："
+      dollars: "元"
     coin:
       back: "◀ 返回"
     form:
@@ -210,6 +212,18 @@ zh-TW:
     updated: "會員更新成功"
     deleted: "會員刪除成功"
     add_coin_fail: "請輸入正確的金額"
+  trades:
+    trade:
+      trade_list: "交易紀錄"
+      trade_date: "交易日期"
+      trade_name: "交易說明"
+      total: "總金額"
+      dollars: "元"
+      show: "明細"
+      destroy: "還原此筆交易"
+      confirm: "確定還原此筆交易？"
+      no_data: "您還尚未有交易"
+    deleted: "已成功還原此筆交易"
   errors:
     messages:
       already_confirmed: "已經驗證，請直接登入。"

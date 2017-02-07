@@ -41,7 +41,7 @@
 						<tr>
 							<td><%= member.full_name %></td>
 							<td><%= member.phone %></td>
-							<td><%= member.coin %></td>
+							<td><%= "#{member.coin} #{t('.dollars', default: 'Dollars')}" %></td>
 							<td> 
 								<%= link_to t('.show', default: 'Show'), member_path(member), class: 'btn btn-default btn-xs' %>
 								<%= link_to t('.add_coin', default: 'Add coin'), coin_member_path(member), class: 'btn btn-warning btn-xs'%>

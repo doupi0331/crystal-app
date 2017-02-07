@@ -64,7 +64,16 @@ class MembersController < ApplicationController
       @member.coin += coin
       @member.total_coin += coin
       logger.debug @member.coin
-      if @member.save
+      
+      trade = @member.trades.new
+      trade.trade_date = Date.today
+      logger.debug trade.trade_date
+      trade.trade_type = "I"
+      trade.trade_name = "加值"
+      trade.total = coin
+      #trade.member_id = @member.id
+      
+      if @member.save && trade.save
         redirect_to member_path(@member)
       end
       #redirect_to coin_member_path(@member)
