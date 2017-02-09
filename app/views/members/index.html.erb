@@ -53,12 +53,14 @@
 				</table>
 			</div>
 		<% else %>
-			<p class="col-md-12 well">
+			<p class="col-md-12 alert alert-warning">
 				<%= t('.cant_find', default: 'Can not find this Member')%>
 			</p>
 		<% end %>
+		<%= render 'shared/paginate', obj: @members%>
 	<% end %>
 	<div id="member-lookup-errors"></div>
+	
 	<!-- end results -->	
 </div>
 

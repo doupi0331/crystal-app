@@ -2,13 +2,13 @@
 	<ul class="nav nav-list">
 		<% if current_user %>
 		<li>
-			<%= link_to "會員管理", members_path  %>
+			<%= link_to t('.members', default: 'Members'), members_path  %>
 		</li>
 		<li>
-			<%= link_to "Link2", "/path2"  %>
+			<%= link_to t('.prodtypes', default: 'Product Types'), prod_types_path  %>
 		</li>
 		<li>
-			<%= link_to "Link3", "/path3"  %>
+			<%= link_to t('.products', default: 'Products'), products_path  %>
 		</li>
 		<% else %>
 		<li class="nav-header">

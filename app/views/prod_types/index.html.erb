@@ -1,0 +1,25 @@
+<h2><%= t('.title', default: "Product Types") %></h2>
+<hr />
+<div class="row">
+	<div class="col-md-12">
+		<%= link_to t('.new', default: 'New Product Type' ), new_prod_type_path, class: 'btn btn-primary' %>
+	</div>
+</div>
+
+<% if @prod_types %>
+	<% if @prod_types.size > 0 %>
+		<table class="table table-striped product-top">
+			<thead>
+				<tr>
+					<th><%= t('.seq', default: 'No.')%></th>
+					<th><%= t('.name', default: 'Product type') %></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<%= render :partial => "prod_type_item", :collection => @prod_types, :as => :prod_type %>
+			</tbody>
+		</table>
+	<% end %>
+	<%= render 'shared/paginate', obj: @prod_types%>
+<% end %>

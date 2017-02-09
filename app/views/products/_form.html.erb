@@ -1,0 +1,46 @@
+<%= render "shared/errors", obj: @product %>
+<div class="row">
+	<div class="col-md-12">
+		<%= form_for(@product, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+    	<div class="form-group">
+			<div class="col-sm-3 control-label">
+				<%= f.label :prod_type %>
+			</div>
+			<div class="col-sm-7">
+				<%= f.collection_select :prod_type_id, ProdType.order_by(:name => 'desc'), :id, :name, 
+					{prompt: t('.select_a_prod_type', default: 'Select a product type')}, 
+					{class: "selectpicker form-control"} %>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-3 control-label">
+				<%= f.label :name %>
+			</div>
+			<div class="col-sm-7">
+				<%= f.text_field :name, class: "form-control",
+				placeholder: t('.enter_the_product_name', default: "Enter the product name"), autofocus: true %>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-3 control-label">
+				<%= f.label :price %>
+			</div>
+			<div class="col-sm-7">
+				<%= f.text_field :price, class: "form-control",
+				placeholder: t('.enter_the_product_price', default: "Enter the product price"), autofocus: true %>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-3 col-sm-7">
+				<%= f.submit(@product.new_record? ? t('.create', default: "Create a product type") : t('.update', default: "Update the product type"),
+				class: "btn btn-primary btn-block") %>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-3 col-sm-4">
+				[ <%= link_to t('.back', default: "◀ Back"), products_path %> ]
+			</div>
+		</div>
+		<% end %>
+	</div>
+</div>

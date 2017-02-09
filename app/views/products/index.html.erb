@@ -1,0 +1,56 @@
+<h2><%= t('.title', default: "Products") %></h2>
+<hr />
+
+<div id="product-lookup">
+	<!-- search -->
+	<div class="row">
+		<%= form_tag search_products_path, remote: true, method: :get, id:'product-lookup-form' do %>
+		<div class="form-group row col-md-12">
+			<div class="col-md-2">
+				<%= link_to t('.new', default: 'New Product'), new_product_path, class: 'btn btn-primary'%>
+			</div>
+			<div class="col-md-8">
+				<%= select_tag :search_param, options_from_collection_for_select(ProdType.order_by(:name => 'desc'), "id", "name", :selected => params[:search_param]), 
+											include_blank: t('.all', default: 'All'), class: "selectpicker form-control" %>
+			</div>
+			<div class="col-md-2">
+				<%= button_tag(type: :submit, class: 'btn btn-success') do %>
+				<i class="fa fa-search"></i> <%= t('.search', default: 'Search')%>
+				<% end %>
+			</div>
+		</div>
+		<% end %>
+	</div>
+	<!-- end search -->
+	
+	<!-- results -->
+	<% if @products %>
+		<% if @products.size > 0 %>
+			<div id="product-lookup-results">
+				<table class="table table-striped product-top">
+					<thead>
+						<tr>
+							<th><%= t('.seq', default: 'No.')%></th>
+							<th><%= t('.type', default: 'Product type') %></th>
+							<th><%= t('.name', default: 'Product') %></th>
+							<th><%= t('.price', default: 'Price') %></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<%= render :partial => "product_item", :collection => @products, :as => :product %>
+					</tbody>
+				</table>
+			</div>
+		<% else %>
+			<div class="alert alert-warning product-top">
+				<%= t('.not_found', default: 'Not found.')%>
+			</div>
+		<% end %>
+		<%= render 'shared/paginate', obj: @products %>
+	<% end %>
+	<div id="product-lookup-errors"></div>
+	<!-- end results -->
+</div>
+
+

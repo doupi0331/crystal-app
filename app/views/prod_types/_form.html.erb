@@ -1,0 +1,25 @@
+<%= render "shared/errors", obj: @prod_type %>
+<div class="row">
+	<div class="col-md-12">
+		<%= form_for(@prod_type, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+		<div class="form-group">
+			<div class="col-sm-2 control-label">
+				<%= f.label :name %>
+			</div>
+			<div class="col-sm-8">
+				<%= f.text_field :name, class: "form-control",
+				placeholder: t('.enter_the_prod_type_name', default: "Enter the product type name"), autofocus: true %>
+			</div>
+			<div class="col-sm-2">
+				<%= f.submit(@prod_type.new_record? ? t('.create', default: "Create a product type") : t('.update', default: "Update the product type"),
+				class: "btn btn-primary btn-block") %>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-2">
+				[ <%= link_to t('.back', default: "◀ Back"), prod_types_path %> ]
+			</div>
+		</div>
+		<% end %>
+	</div>
+</div>

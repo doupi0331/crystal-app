@@ -17,6 +17,12 @@ zh-TW:
         last_name: "\"姓\""
         password_confirmation: ""
         current_password: ""
+      prod_type:
+        name: "類別名稱"
+      product:
+        prod_type: "商品類別"
+        name: "商品名稱"
+        price: "商品單價"
     errors:
       models:
         member:
@@ -56,6 +62,24 @@ zh-TW:
               blank: "為必填"
               too_short: "字數太短，至少鍵入1個字"
               too_long: "字數太長，最多5個字"
+        prod_type:
+          attributes:
+            name:
+              blank: "為必填"
+              too_short: "字數太短，至少鍵入1個字"
+              too_long: "字數太長，最多10個字"
+              taken: "不可重複"
+        product:
+          attributes:
+            prod_type:
+              blank: "為必選"
+            name:
+              blank: "為必填"
+              too_short: "字數太短，至少鍵入1個字"
+              too_long: "字數太長，最多10個字"
+              taken: "不可重複"
+            price:
+              blank: "為必填"
   devise:
     confirmations:
       confirmed: "您的帳號已通過驗證，現在您已成功登入。"
@@ -167,6 +191,19 @@ zh-TW:
       send_instructions: "您將在幾分鐘後收到一封電子郵件，內有將帳號解除鎖定的步驟說明。"
       send_paranoid_instructions: "如果您的帳號已存在，您的電子信箱將會收到如何解鎖帳號的指示。"
       unlocked: "您的帳號已被解鎖，現在已經登入。"
+  shared:
+    paginate:
+      previous: "« 上一頁"
+      next: "下一頁 »"
+  layouts:
+    navigation:
+      brand: "Crystal 管理介面"
+      logout: "登出"
+      login: "登入"
+    sidebar:
+      members: "會員管理"
+      prodtypes: "商品類別"
+      products: "商品項目"
   members:
     index:
       title: "會員管理"
@@ -224,6 +261,52 @@ zh-TW:
       confirm: "確定還原此筆交易？"
       no_data: "您還尚未有交易"
     deleted: "已成功還原此筆交易"
+  prod_types:
+    index:
+      title: "商品類別"
+      new: "新增商品類別"
+      seq: "序號"
+      name: "類別名稱"
+    prod_type_item:
+      edit: "編輯"
+    new:
+      title: "新增商品類別"
+    edit:
+      title: "編輯商品類別"
+    form:
+      enter_the_prod_type_name: "請輸入類別名稱"
+      create: "新增"
+      update: "修改"
+      back: "◀ 返回"
+    created: "商品類別新增成功"
+    updated: "商品類別更新成功"
+  products:
+    index:
+      all: "---全部---"
+      title: "商品項目"
+      new: "新增商品"
+      search: "搜詢"
+      seq: "序號"
+      type: "商品類別"
+      name: "商品名稱"
+      price: "單價"
+      not_found: "找不到商品"
+    product_item:
+      edit: "編輯"
+      dollars: "元"
+    new:
+      title: "新增商品"
+    edit:
+      title: "編輯商品"
+    form:
+      select_a_prod_type: "請選擇商品類別"
+      enter_the_product_name: "請輸入商品名稱"
+      enter_the_product_price: "請輸入商品單價"
+      create: "新增"
+      update: "修改"
+      back: "◀ 返回"
+    created: "商品新增成功"
+    updated: "商品更新成功"
   errors:
     messages:
       already_confirmed: "已經驗證，請直接登入。"

@@ -2,15 +2,15 @@ class MembersController < ApplicationController
   before_action :set_member, only: [:show, :edit, :update, :destroy, :coin, :add_coin]
   
   def index
-    @members = Member.all
+    @members = Member.order_by(:phone => 'asc').paginate(page: params[:page])     #(:created_at => 'desc')
   end
   
   def search
     if params[:search_param] == ""
-      @members = Member.all
+      @members = Member.order_by(:phone => 'asc').paginate(page: params[:page]) 
       render 'index'
     else
-      @members = Member.search(params[:search_param])
+      @members = Member.search(params[:search_param]).order_by(:phone => 'asc').paginate(page: params[:page]) 
       if @members
         render 'index'
       else
@@ -20,6 +20,7 @@ class MembersController < ApplicationController
   end
   
   def show
+    @trades = @member.trades.order_by(:created_at => 'desc').paginate(page: params[:page]) 
   end
   
   def new
@@ -61,19 +62,7 @@ class MembersController < ApplicationController
     coin = params[:coin_param].to_i
     
     if coin > 0
-      @member.coin += coin
-      @member.total_coin += coin
-      logger.debug @member.coin
-      
-      trade = @member.trades.new
-      trade.trade_date = Date.today
-      logger.debug trade.trade_date
-      trade.trade_type = "I"
-      trade.trade_name = "加值"
-      trade.total = coin
-      #trade.member_id = @member.id
-      
-      if @member.save && trade.save
+      if @member.add_coin(coin, current_user.email)
         redirect_to member_path(@member)
       end
       #redirect_to coin_member_path(@member)
