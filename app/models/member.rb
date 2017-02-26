@@ -47,6 +47,9 @@ class Member
     if trade_type == "I"
       self.coin -= total
       self.total_coin -= total
+      if self.coin < 0
+        return false
+      end
     else
       self.coin += total
       self.total_coin += total

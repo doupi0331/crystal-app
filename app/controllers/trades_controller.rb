@@ -43,7 +43,10 @@ class TradesController < ApplicationController
     #logger.debug "#{@trades.first.trade_type} #{@trades.sum(:total)} #{@trades.size}"
     if @member.reverse(@trades.first.trade_type, @trades.sum(:total))
       @trades.destroy
-      flash[:danger] = t('.deleted', default: 'Trade was successfully deleted')
+      flash[:warning] = t('.deleted', default: 'Trade was successfully deleted')
+      redirect_to member_path(@member)
+    else
+      flash[:danger] = t('.reverse-fail', default: 'This trade cant be reversed')
       redirect_to member_path(@member)
     end
   end

@@ -289,6 +289,7 @@ zh-TW:
     success: "已成功新增"
     not_enough: "儲值金不夠，請加值！"
     product_error: "請選擇商品/課程"
+    reverse-fail: "交易還原失敗"
   prod_types:
     index:
       title: "商品/課程類別"
