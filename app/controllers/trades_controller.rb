@@ -5,6 +5,7 @@ class TradesController < ApplicationController
   
   def show
     #@today_trades = @trades.order_by(:created_at => 'desc').paginate(page: params[:page]) 
+    @trades = @trades.paginate(page: params[:page])
   end
   
   def new
@@ -39,10 +40,8 @@ class TradesController < ApplicationController
   end
   
   def destroy
+    #logger.debug "#{@trades.first.trade_type} #{@trades.sum(:total)} #{@trades.size}"
     if @member.reverse(@trades.first.trade_type, @trades.sum(:total))
-      
-      #logger.debug "#{@trades.first.trade_type} #{@trades.sum(:total)} #{@trades.size}"
-      
       @trades.destroy
       flash[:danger] = t('.deleted', default: 'Trade was successfully deleted')
       redirect_to member_path(@member)
@@ -51,7 +50,7 @@ class TradesController < ApplicationController
   
   private
   def set_trade
-    @trades = Trade.where(:trade_date => params[:date], :trade_type => params[:type]).order_by(:created_at => 'desc').paginate(page: params[:page]) 
+    @trades = Trade.where(:trade_date => params[:date], :trade_type => params[:type]).order_by(:created_at => 'desc') 
   end
   def set_member
     @member = Member.find(params[:member_id] ? params[:member_id] : params[:id])
