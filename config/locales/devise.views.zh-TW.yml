@@ -20,9 +20,13 @@ zh-TW:
       prod_type:
         name: "類別名稱"
       product:
-        prod_type: "商品類別"
-        name: "商品名稱"
-        price: "商品單價"
+        prod_type: "商品/課程類別"
+        name: "商品/課程名稱"
+        price: "商品/課程單價"
+      trade:
+        trade_date: "交易日期"
+        amount: "數量"
+        current_price: "金額"
     errors:
       models:
         member:
@@ -202,11 +206,12 @@ zh-TW:
       login: "登入"
     sidebar:
       members: "會員管理"
-      prodtypes: "商品類別"
-      products: "商品項目"
+      prodtypes: "商品/課程類別"
+      products: "商品/課程項目"
   members:
     index:
       title: "會員管理"
+    lookup:
       enter_the_phone_number: "請輸入手機號碼"
       search: "搜尋"
       new: "新增會員"
@@ -250,6 +255,25 @@ zh-TW:
     deleted: "會員刪除成功"
     add_coin_fail: "請輸入正確的金額"
   trades:
+    show:
+      title: "交易明細"
+    new:
+      title: "新增消費"
+      back: "◀ 返回"
+    form:
+      product-type: "商品/課程類別"
+      please-select-type: "請先選擇 商品/課程類別"
+      product-id: "商品/課程"
+      cant-found: "找不到商品/課程"
+      add: "新增一筆"
+    trade_detail:
+      seq: "序號"
+      product: "商品/課程"
+      price: "單價"
+      amount: "數量"
+      total: "小計"
+    trade_item:
+      dollars: "元"
     trade:
       trade_list: "交易紀錄"
       trade_date: "交易日期"
@@ -261,52 +285,56 @@ zh-TW:
       confirm: "確定還原此筆交易？"
       no_data: "您還尚未有交易"
     deleted: "已成功還原此筆交易"
+    success: "已成功新增"
+    not_enough: "儲值金不夠，請加值！"
+    product_error: "請選擇商品/課程"
   prod_types:
     index:
-      title: "商品類別"
-      new: "新增商品類別"
+      title: "商品/課程類別"
+      new: "新增商品/課程類別"
       seq: "序號"
       name: "類別名稱"
     prod_type_item:
       edit: "編輯"
     new:
-      title: "新增商品類別"
+      title: "新增商品/課程類別"
     edit:
-      title: "編輯商品類別"
+      title: "編輯商品/課程類別"
     form:
       enter_the_prod_type_name: "請輸入類別名稱"
       create: "新增"
       update: "修改"
       back: "◀ 返回"
-    created: "商品類別新增成功"
-    updated: "商品類別更新成功"
+    created: "商品/課程類別新增成功"
+    updated: "商品/課程類別更新成功"
   products:
     index:
+      title: "商品/課程項目"
+    lookup:
       all: "---全部---"
-      title: "商品項目"
-      new: "新增商品"
+      new: "新增商品/課程"
       search: "搜詢"
       seq: "序號"
-      type: "商品類別"
-      name: "商品名稱"
+      type: "商品/課程類別"
+      name: "商品/課程名稱"
       price: "單價"
-      not_found: "找不到商品"
+      not_found: "找不到商品/課程"
     product_item:
       edit: "編輯"
       dollars: "元"
     new:
-      title: "新增商品"
+      title: "新增商品/課程"
     edit:
-      title: "編輯商品"
+      title: "編輯商品/課程"
     form:
-      select_a_prod_type: "請選擇商品類別"
-      enter_the_product_name: "請輸入商品名稱"
-      enter_the_product_price: "請輸入商品單價"
+      select_a_prod_type: "請選擇商品/課程類別"
+      enter_the_product_name: "請輸入商品/課程名稱"
+      enter_the_product_price: "請輸入商品/課程單價"
       create: "新增"
       update: "修改"
       back: "◀ 返回"
-    created: "商品新增成功"
-    updated: "商品更新成功"
+    created: "商品/課程新增成功"
+    updated: "商品/課程更新成功"
   errors:
     messages:
       already_confirmed: "已經驗證，請直接登入。"

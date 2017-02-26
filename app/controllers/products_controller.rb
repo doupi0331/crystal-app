@@ -8,11 +8,11 @@ class ProductsController < ApplicationController
   def search
     if params[:search_param] == ""
       @products = Product.order_by(:prod_type_id => 'asc', :created_at => 'desc').paginate(page: params[:page]) 
-      render 'index'
+      render partial: "lookup"
     else
       @products = Product.search(params[:search_param]).order_by(:prod_type_id => 'asc', :created_at => 'desc').paginate(page: params[:page]) 
       if @products
-        render 'index'
+        render partial: "lookup"
       else
         render status: :not_found, nothing: true
       end
@@ -25,7 +25,6 @@ class ProductsController < ApplicationController
   
   def create
     @product = Product.new(product_params)
-    @product.creator = current_user.email
     
     if @product.save
       flash[:success] = t('.created', default: 'Product was successfully created.')
@@ -47,9 +46,19 @@ class ProductsController < ApplicationController
     end
   end
   
+  def product_api
+    respond_to do |format|
+      format.json do
+        id = params[:id]
+        @result = Product.where(id: id)
+        render json: @result
+      end
+    end
+  end
+  
   private
   def product_params
-    params.require(:product).permit(:name, :price, :prod_type_id)
+    params.require(:product).permit(:name, :price, :prod_type_id, :creator)
   end
   def set_product
     @product = Product.find(params[:id])

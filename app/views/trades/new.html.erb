@@ -1,0 +1,10 @@
+<%= render "shared/errors", obj: @trade %>
+<h2><%= t('.title', default: "New Trade") %></h2>
+<hr />
+<%= render 'members/member'%>
+<%= render 'form' %>
+<%= render 'trade_detail', trades: @today_trades %>
+<div class="member-top">
+	[ <%= link_to t('.back', default: "◀ Back"), members_path %> ]
+</div>
+

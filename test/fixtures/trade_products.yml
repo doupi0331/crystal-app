@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: 
+  amount: 
+  current_price: 
+  subtotal: 
+
+two:
+  name: 
+  amount: 
+  current_price: 
+  subtotal: 

@@ -28,6 +28,7 @@
 			<div class="col-sm-7">
 				<%= f.text_field :price, class: "form-control",
 				placeholder: t('.enter_the_product_price', default: "Enter the product price"), autofocus: true %>
+				<%= f.hidden_field :creator, { :value => current_user.email }%>
 			</div>
 		</div>
 		<div class="form-group">

@@ -9,6 +9,7 @@
 			<div class="col-sm-8">
 				<%= f.text_field :name, class: "form-control",
 				placeholder: t('.enter_the_prod_type_name', default: "Enter the product type name"), autofocus: true %>
+				<%= f.hidden_field :creator, { :value => current_user.email }%>
 			</div>
 			<div class="col-sm-2">
 				<%= f.submit(@prod_type.new_record? ? t('.create', default: "Create a product type") : t('.update', default: "Update the product type"),

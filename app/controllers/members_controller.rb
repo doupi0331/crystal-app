@@ -8,19 +8,20 @@ class MembersController < ApplicationController
   def search
     if params[:search_param] == ""
       @members = Member.order_by(:phone => 'asc').paginate(page: params[:page]) 
-      render 'index'
+      render partial: "lookup"
     else
       @members = Member.search(params[:search_param]).order_by(:phone => 'asc').paginate(page: params[:page]) 
       if @members
-        render 'index'
+        render partial: "lookup"
       else
         render status: :not_found, nothing: true
       end
     end
   end
   
-  def show
-    @trades = @member.trades.order_by(:created_at => 'desc').paginate(page: params[:page]) 
+  def show 
+    @trades = Trade.grouped(@member.id).paginate(:page => params[:page], :per_page => 4)
+    #logger.debug "#{@trades.class} #{@trades}--------------"
   end
   
   def new

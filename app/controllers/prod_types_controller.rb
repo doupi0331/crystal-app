@@ -11,7 +11,6 @@ class ProdTypesController < ApplicationController
   
   def create
     @prod_type = ProdType.new(prod_type_params)
-    @prod_type.creator = current_user.email
     
     if @prod_type.save
       flash[:success] = t('.created', default: 'Product type was successfully created.')
@@ -35,7 +34,7 @@ class ProdTypesController < ApplicationController
   
   private
   def prod_type_params
-    params.require(:prod_type).permit(:name)
+    params.require(:prod_type).permit(:name,:creator)
   end
   def set_prod_type
     @prod_type = ProdType.find(params[:id])

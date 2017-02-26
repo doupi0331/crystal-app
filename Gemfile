@@ -22,7 +22,9 @@ gem 'coffee-rails', '~> 4.2'
 
 gem 'mongoid', '~> 6.0.0'
 gem 'bson_ext'
+gem 'will_paginate', '~> 3.1.0'
 gem "will_paginate_mongoid"
+gem "nested_form"
 
 gem 'devise'
 gem 'twitter-bootstrap-rails'

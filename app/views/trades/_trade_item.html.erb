@@ -1,0 +1,7 @@
+<tr>
+	<td><%= trade_counter + calculate_page(params[:page]) %></td>
+	<td><%= trade.product %></td>
+	<td><%= trade.current_price %></td>
+	<td><%= trade.amount %></td>
+	<td><%= "#{trade.total} #{t('.dollars', default: 'Dollars')}" %></td>
+</tr>

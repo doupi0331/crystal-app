@@ -9,29 +9,34 @@
 						<th><%= t('.trade_name', default: 'Trade Name') %></th>
 						<th><%= t('.total', default: 'Coin') %></th>
 						<th></th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
 					<% @trades.each do |trade| %>
 					<tr>
-						<td><%= trade.trade_date %></td>
-						<td><%= trade.trade_name %></td>
+						<td><%= trade[:_id][:trade_date].to_date %></td>
+						<td><%= trade[:_id][:trade_name] %></td>
 						<td>
-							<% if trade.trade_type == "I" %>
+							<% if trade[:_id][:trade_type] == "I" %>
 								<span style="color: green;">
-									<%= "#{trade.total} #{t('.dollars', default: 'Dollars')}" %>
+									<%= "#{trade[:value][:total]} #{t('.dollars', default: 'Dollars')}" %>
 								</span>
 							<% else %>
 								<span style="color: red;">
-									<%= "#{trade.total} #{t('.dollars', default: 'Dollars')}" %>
+									<%= "#{trade[:value][:total]} #{t('.dollars', default: 'Dollars')}" %>
 								</span>
 							<% end %>
 						</td>
 						<td>
-							<!--<%= trade.creator %>-->
-							<%= link_to t('.show', default: 'Show'), trade_path(:id => trade.id, :member_id => @member.id), class: 'btn btn-default btn-xs'%>
-							<%= link_to t('.destroy', default: 'Delete'), trade_path(:id => trade.id, :member_id => @member.id), method: :delete, 
-										data: {confirm: t('.confirm', default: 'Are you sure?')}, class: 'btn btn-danger btn-xs'%>
+							<% if trade[:_id][:trade_type] == "O" %>
+								<%= link_to t('.show', default: 'Show'), trade_path(:date => trade[:_id][:trade_date].to_date, :type => trade[:_id][:trade_type], :member_id => @member.id), 
+												class: 'btn btn-default btn-xs'%>
+							<% end %>
+						</td>
+						<td>
+							<%= link_to t('.destroy', default: 'Delete'), trade_path(:date => trade[:_id][:trade_date].to_date, :type => trade[:_id][:trade_type], :member_id => @member.id), 
+										method: :delete, data: {confirm: t('.confirm', default: 'Are you sure?')}, class: 'btn btn-danger btn-xs'%>
 						</td>
 					</tr>
 					<% end %>

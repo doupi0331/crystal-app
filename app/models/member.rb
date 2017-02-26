@@ -36,6 +36,7 @@ class Member
     trade.trade_date = Date.today
     trade.trade_type = "I"
     trade.trade_name = "加值"
+    trade.amount = 1
     trade.total = coin
     trade.creator = creator
     

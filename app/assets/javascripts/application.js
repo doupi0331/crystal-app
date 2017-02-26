@@ -14,4 +14,13 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require bootstrap-datepicker
+//= require jquery_nested_form
 //= require_tree .
+
+function hide_spinner() {
+  $('#spinner').hide();
+}
+
+function show_spinner() {
+  $('#spinner').show();
+}

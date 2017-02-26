@@ -3,7 +3,7 @@
 <hr />
 <%= render 'member'%>
 
-<%= form_tag add_coin_path(@member), method: :post do %>
+<%= form_tag coin_path(@member), method: :post do %>
 <div class="row">
 	<div class="col-md-2 col-right">
 		<h4><%= t( '.amount', default: "Amount：" ) %></h4>

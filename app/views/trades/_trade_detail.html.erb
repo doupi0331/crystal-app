@@ -1,0 +1,20 @@
+<table class="table table-striped" id="trade-products">
+	<thead>
+		<tr>
+			<th><%= t('.seq', default: 'No.')%></th>
+			<th><%= t('.product', default: 'Product') %></th>
+			<th><%= t('.price', default: 'Price') %></th>
+			<th><%= t('.amount', default: 'Amount') %></th>
+			<th><%= t('.total', default: 'Total') %></th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% if trades %>
+			<% if trades.size > 0 %>
+				<%= render :partial => "trade_item", :collection => trades, :as => :trade %>
+			<% end %>
+		<% end %>
+	</tbody>
+</table>
+<%= render 'shared/paginate', obj: trades %>
