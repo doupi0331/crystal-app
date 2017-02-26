@@ -41,7 +41,7 @@ class TradesController < ApplicationController
   def destroy
     if @member.reverse(@trades.first.trade_type, @trades.sum(:total))
       
-      logger.debug "#{@trades.first.trade_type} #{@trades.sum(:total)} #{@trades.size}"
+      #logger.debug "#{@trades.first.trade_type} #{@trades.sum(:total)} #{@trades.size}"
       
       @trades.destroy
       flash[:danger] = t('.deleted', default: 'Trade was successfully deleted')

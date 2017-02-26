@@ -257,6 +257,7 @@ zh-TW:
   trades:
     show:
       title: "交易明細"
+      back: "◀ 返回"
     new:
       title: "新增消費"
       back: "◀ 返回"
