@@ -6,7 +6,7 @@ var get_product_info = function() {
 	    url: '/products/product_api',
 	    type: 'GET',
 	    data: {
-	      id: $('#product_id :selected').val()
+	      id: id
 	    },
 	    error: function(xhr) {
 	      alert('Ajax request 發生錯誤');

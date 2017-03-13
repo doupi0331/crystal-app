@@ -14,7 +14,14 @@ Rails.application.routes.draw do
   post 'members/trade/:id' => 'trades#create'
   get 'search_products' => 'products#search'
   
+  # api
   match 'products/product_api', :via => :all
-
+  scope :path => '/api/v1/', :module => "api_v1", :as => 'v1', :defaults => { :format => :json } do
+    post "/login" => "auth#login"
+    post "/logout" => "auth#logout"
+    resources :members, except: [:destroy]
+  end
+  
+  
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
