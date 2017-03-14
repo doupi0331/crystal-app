@@ -41,6 +41,7 @@ zh-TW:
               too_long: "字數太長，最多10個字"
             phone: 
               blank: "為必填"
+              taken: "此行動電話已被註冊過"
             birthdate:
               blank: "為必填"
             password:
