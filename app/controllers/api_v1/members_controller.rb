@@ -14,7 +14,8 @@ class ApiV1::MembersController < ApiController
                           :password_confirmation => params[:password_confirmation])
 
     if @member.save
-      render :json => { :id => @member.id }
+      
+      render :json => { :id =>"#{@member.id}" }
     else
       
       render :json => { :message => "failed", :errors => @member.errors.full_messages.to_a }, :status => 400
