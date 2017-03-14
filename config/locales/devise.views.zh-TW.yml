@@ -6,7 +6,7 @@ zh-TW:
       member:
         first_name: "名"
         last_name: "姓"
-        phone: "手機號碼"
+        phone: "行動電話"
         birthdate: "生日"
         password: "密碼"
         password_confirmation: "確認密碼"
@@ -41,7 +41,7 @@ zh-TW:
               too_long: "字數太長，最多10個字"
             phone: 
               blank: "為必填"
-              taken: "此行動電話已被註冊過"
+              taken: "已被註冊過"
             birthdate:
               blank: "為必填"
             password:
