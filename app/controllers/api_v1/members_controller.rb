@@ -15,7 +15,8 @@ class ApiV1::MembersController < ApiController
 
     if @member.save
       
-      render :json => { :id =>"#{@member.id}" }
+      #render :json => { :id =>"#{@member.id}" }
+      render :json => { :message => "successed" }
     else
       
       render :json => { :message => "failed", :errors => @member.errors.full_messages.to_a }, :status => 400
