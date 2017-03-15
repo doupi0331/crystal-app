@@ -8,14 +8,20 @@ class ApiV1::AuthController < ApiController
       member = Member.find_by(phone: params[:phone])
       # 並確認member存在並且密碼正確
       
-      if member && member.authenticate( params[:password] )
-        # 回傳正確訊息
-        render :json => { :message => "successed",
-                          :id => "#{member.id}"}
+      if member 
+        if member.authenticate( params[:password] )
+          # 回傳正確訊息
+          render :json => { :message => "successed",
+                            :id => "#{member.id}"}     
+        else
+          # 回傳錯誤訊息
+          render :json => { :message => "failed", 
+                            :error => "密碼不正確" }, :status => 401
+        end
       else
         # 回傳錯誤訊息
         render :json => { :message => "failed", 
-                          :error => "行動電話或密碼不正確" }, :status => 401
+                          :error => "此行動電話尚未註冊" }, :status => 401
       end
       
     end
