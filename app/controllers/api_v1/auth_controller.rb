@@ -12,7 +12,11 @@ class ApiV1::AuthController < ApiController
         if member.authenticate( params[:password] )
           # 回傳正確訊息
           render :json => { :message => "successed",
-                            :id => "#{member.id}"}     
+                            :id => "#{member.id}",
+                            :first_name => member.first_name,
+                            :last_name => member.last_name,
+                            :phone => member.phone,
+                            :coin => member.coin}     
         else
           # 回傳錯誤訊息
           render :json => { :message => "failed", 
