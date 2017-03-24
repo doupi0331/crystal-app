@@ -53,7 +53,7 @@ class TradesController < ApplicationController
   
   private
   def set_trade
-    @trades = Trade.where(:trade_date => params[:date], :trade_type => params[:type]).order_by(:created_at => 'desc') 
+    @trades = Trade.where(:trade_date => params[:date], :trade_type => params[:type], :member_id => params[:member_id]).order_by(:created_at => 'desc') 
   end
   def set_member
     @member = Member.find(params[:member_id] ? params[:member_id] : params[:id])

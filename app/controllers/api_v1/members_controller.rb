@@ -44,4 +44,8 @@ class ApiV1::MembersController < ApiController
       render :json => { :message => "no keys"}, :status => 400
     end
   end
+  
+  def trades
+    @trades = Trade.grouped(params[:id])
+  end
 end

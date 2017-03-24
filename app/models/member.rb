@@ -31,16 +31,29 @@ class Member
     self.coin += coin
     self.total_coin += coin
     logger.debug self.coin
-      
-    trade = self.trades.new
-    trade.trade_date = Date.today
-    trade.trade_type = "I"
-    trade.trade_name = "加值"
-    trade.amount = 1
-    trade.total = coin
-    trade.creator = creator
     
-    return self.save && trade.save
+    trades = Trade.where(:trade_date => Date.today, :trade_type => "I", :member_id => self.id, :product => "現金加值").limit(1)
+    
+    logger.debug trades.to_json
+    
+    if trades.size > 0 
+      trades.each do |trade|
+        trade.current_price += coin
+        trade.total += coin
+        return self.save && trade.save
+      end
+    else
+      trade = self.trades.new
+      trade.trade_date = Date.today
+      trade.trade_type = "I"
+      trade.trade_name = "加值"
+      trade.product = "現金加值"
+      trade.current_price = coin
+      trade.amount = 1
+      trade.total = coin
+      trade.creator = creator   
+      return self.save && trade.save 
+    end
   end
   
   def reverse(trade_type, total)
