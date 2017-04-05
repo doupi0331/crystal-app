@@ -7,10 +7,10 @@ class ProductsController < ApplicationController
   
   def search
     if params[:search_param] == ""
-      @products = Product.order_by(:prod_type_id => 'asc', :created_at => 'desc').paginate(page: params[:page]) 
+      @products = Product.order_by(:prod_type_id => 'asc', :price => 'asc').paginate(page: params[:page]) 
       render partial: "lookup"
     else
-      @products = Product.search(params[:search_param]).order_by(:prod_type_id => 'asc', :created_at => 'desc').paginate(page: params[:page]) 
+      @products = Product.search(params[:search_param]).order_by(:prod_type_id => 'asc', :price => 'asc').paginate(page: params[:page]) 
       if @products
         render partial: "lookup"
       else
