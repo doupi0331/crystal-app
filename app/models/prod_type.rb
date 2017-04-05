@@ -3,7 +3,7 @@ class ProdType
   include Mongoid::Timestamps
   
   # relations
-  has_many :products
+  has_many :products, order: :price.asc
   
   # validations
   validates :name, presence: true, 
