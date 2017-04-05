@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:edit, :update]
   
   def index
-    @products = Product.order_by(:prod_type_id => 'asc', :created_at => 'desc').paginate(page: params[:page]) 
+    @products = Product.order_by(:prod_type_id => 'asc', :price => 'asc').paginate(page: params[:page]) 
   end
   
   def search

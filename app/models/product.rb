@@ -7,7 +7,7 @@ class Product
   
   # validations
   validates :name, presence: true, 
-                   length: { minimum: 1, maximum: 10 },
+                   length: { minimum: 1, maximum: 50 },
                    uniqueness: {case_sensitive: false}
   validates :price, presence: true
   validates :creator, presence: true

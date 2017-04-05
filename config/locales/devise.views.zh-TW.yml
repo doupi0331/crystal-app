@@ -81,7 +81,7 @@ zh-TW:
             name:
               blank: "為必填"
               too_short: "字數太短，至少鍵入1個字"
-              too_long: "字數太長，最多10個字"
+              too_long: "字數太長，最多50個字"
               taken: "不可重複"
             price:
               blank: "為必填"
