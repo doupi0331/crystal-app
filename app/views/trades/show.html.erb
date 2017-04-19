@@ -1,7 +1,4 @@
 <h2><%= "#{@trades.first.trade_date} #{t('.title', default: "Trade detail")}" %></h2>
 <hr />
 <%= render 'members/member'%>
-<%= render 'trade_detail', trades: @trades %>
-<div class="member-top">
-	[ <%= link_to t('.back', default: "◀ Back"), member_path(@member.id) %> ]
-</div>
+<%= render 'trade_detail' %>

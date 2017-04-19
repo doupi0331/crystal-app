@@ -29,4 +29,9 @@ $(document).ready(function() {
           todayBtn: 'linked',
           autoclose: true
       });
+      
+    $("tr[data-link]").click(function() {
+    	//alert($(this).data("link"));
+	  	window.location = $(this).data("link");
+	});
 })

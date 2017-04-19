@@ -1,4 +1,4 @@
-<div>
+<div id="shopping-cart-form">
 
 	<table class="table table-striped" id="trade-products">
 		<thead>
@@ -7,6 +7,7 @@
 				<th><%= t('.price', default: 'Price') %></th>
 				<th><%= t('.amount', default: 'Amount') %></th>
 				<th><%= t('.subtotal', default: 'Subtotal') %></th>
+				<th style="width: 80px"></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -15,11 +16,11 @@
 			<% @trades.each do |trade| %>
 
 			<tr>
-				<td><%= trade.product %></td>
-				<td><%= trade.current_price %></td>
-				<td><%= trade.amount %></td>
-				<td><%= "#{trade.total} #{t('.dollars', default: 'Dollars')}" %></td>
-				
+				<td><%= trade["product"] %></td>
+				<td><%= trade["current_price"] %></td>
+				<td><%= trade["amount"] %></td>
+				<td><%= "#{trade["total"]} #{t('.dollars', default: 'Dollars')}" %></td>
+				<td> <%= button_to t('.cancel', default: 'Cancel'), cancel_trade_item_path(@member.id), params: { 'product' => trade["product"]}, :remote => true, :method => :post, class: 'btn btn-danger btn-xs'  %> </td>
 			</tr>
 			<% end %>
 			<% end %>

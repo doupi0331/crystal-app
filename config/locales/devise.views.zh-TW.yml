@@ -218,17 +218,15 @@ zh-TW:
       new: "新增會員"
       full_name: "姓名"
       phone: "手機"
+      birthdate: "生日"
       coin: "儲值金"
       show: "細節"
-      add_coin: "加值"
-      trade: "新增消費"
       cant_find: "找不到此會員"
       dollars: "元"
     show:
       edit: "修改"
       destroy: "刪除"
       confirm: "確定要刪除嗎？ 刪除後便無法復原。"
-      back: "◀ 返回"
     member:
       full_name: "會員姓名："
       phone: "手機號碼："
@@ -236,7 +234,6 @@ zh-TW:
       coin: "儲值金："
       dollars: "元"
     coin:
-      back: "◀ 返回"
     form:
       enter_your_last_name: "請輸入您的姓"
       enter_your_first_name: "請輸入您的名"
@@ -245,12 +242,10 @@ zh-TW:
       enter_password: "請輸入密碼"
       create: "新增會員"
       update: "修改會員"
-      back: "◀ 返回"
     coin:
       amount: "金額："
       submit: "確認加值"
       enter_amount: "請輸入金額"
-      back: "◀ 返回"
     created: "會員新增成功"
     updated: "會員更新成功"
     deleted: "會員刪除成功"
@@ -258,23 +253,32 @@ zh-TW:
   trades:
     show:
       title: "交易明細"
-      back: "◀ 返回"
     new:
       title: "新增消費"
-      back: "◀ 返回"
+      submit: "確認送出"
     form:
+      trade-date: "交易日期"
       product-type: "商品/課程類別"
       please-select-type: "請先選擇 商品/課程類別"
       product-id: "商品/課程"
+      price: "單價"
+      amount: "數量"
       cant-found: "找不到商品/課程"
       add: "新增一筆"
-    trade_detail:
-      seq: "序號"
+    shopping_cart:
       product: "商品/課程"
       price: "單價"
       amount: "數量"
-      total: "小計"
-    trade_item:
+      subtotal: "小計"
+      total: "合計"
+      dollars: "元"
+      cancel: "取消"
+    trade_detail:
+      product: "商品/課程"
+      price: "單價"
+      amount: "數量"
+      subtotal: "小計"
+      total: "合計"
       dollars: "元"
     trade:
       trade_list: "交易紀錄"
@@ -283,6 +287,8 @@ zh-TW:
       total: "總金額"
       dollars: "元"
       show: "明細"
+      add_coin: "加值"
+      trade: "新增消費"
       destroy: "還原此筆交易"
       confirm: "確定還原此筆交易？"
       no_data: "您還尚未有交易"
@@ -291,6 +297,7 @@ zh-TW:
     not_enough: "儲值金不夠，請加值！"
     product_error: "請選擇商品/課程"
     reverse-fail: "交易還原失敗"
+    add_an_item: "請新增一筆項目，再按確認送出"
   prod_types:
     index:
       title: "商品/課程類別"
@@ -307,7 +314,6 @@ zh-TW:
       enter_the_prod_type_name: "請輸入類別名稱"
       create: "新增"
       update: "修改"
-      back: "◀ 返回"
     created: "商品/課程類別新增成功"
     updated: "商品/課程類別更新成功"
   products:
@@ -335,7 +341,6 @@ zh-TW:
       enter_the_product_price: "請輸入商品/課程單價"
       create: "新增"
       update: "修改"
-      back: "◀ 返回"
     created: "商品/課程新增成功"
     updated: "商品/課程更新成功"
   errors:

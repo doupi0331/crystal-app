@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   post 'members/trade/:id' => 'trades#create'
   get 'search_products' => 'products#search'
   
+  post 'cancel_trade_item/:id' => 'trades#cancel_trade_item', as: "cancel_trade_item", defaults: { format: 'js' } ###
+  get 'add_trade_item/:id' => 'trades#add_trade_item', as: "add_trade_item"
+  
   # api
   match 'products/product_api', :via => :all
   scope :path => '/api/v1/', :module => "api_v1", :as => 'v1', :defaults => { :format => :json } do

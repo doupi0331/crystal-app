@@ -1,24 +1,14 @@
-<%= form_for(@trade, :html => {class: "form-horizontal", role: "form"}, :url => {:action => "create", :id => @member} ) do |f| %>
-
-<!-- trade -->
-<div class="form-group">
-	<div class="col-sm-2 control-label">
-		<%= f.label :trade_date %>
+<div id="trades-shopping-cart" class="row">
+	<!-- form -->
+	<%= form_tag add_trade_item_path(@member), remote: true, method: :get, id:'trades-form', :class => 'form-horizontal' do %>
+	<div class="form-group">
+		<div class="col-sm-2 control-label">
+			<%= label_tag t('.trade-date', default: 'Trade Date') %>
+		</div>
+		<div class="col-sm-10">
+			<%= text_field_tag :trade_date, Date.today, class: 'form-control',:readonly => true %>
+		</div>
 	</div>
-	<div class="col-sm-10">
-		<%= f.text_field :trade_date, value: Date.today, class: "form-control",:readonly => true %>
-	</div>
-</div>
-<div id="hidden data">
-	<%= f.hidden_field :member_id, { :value => @member.id }%>
-	<%= f.hidden_field :creator, { :value => current_user.email }%>
-	<%= f.hidden_field :trade_type, { :value => "O" }%>
-	<%= f.hidden_field :trade_name, { :value => "消費" }%>
-</div>
-<!-- end trade -->
-
-<!-- trade products -->
-<div>
 	<div class="form-group">
 		<div class="col-sm-2 control-label">
 			<%= label_tag t('.product-type', default: 'Product type') %>
@@ -45,27 +35,34 @@
 	</div>
 	<div class="form-group" id="price_input">
 		<div class="col-sm-2 control-label">
-			<%= f.label :current_price %>
+			<%= label_tag t('.price', default: 'Price') %>
 		</div>
 		<div class="col-sm-10">
-			<%= f.text_field :current_price, class: "form-control",:readonly => true %>
-			<%= f.hidden_field :product, { :value => current_user.email }%>
+			<%= text_field_tag :current_price, "0", class: 'form-control',:readonly => true %>
+			<%= hidden_field_tag :product%>
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="col-sm-2 control-label">
-			<%= f.label :amount %>
+			<%= label_tag t('.amount', default: 'Amount') %>
 		</div>
 		<div class="col-sm-10">
-			<%= f.number_field :amount, value: 1, min: 1, class: "form-control", placeholder: t('.enter_the_product_amount', default: "Enter the product amount") %>
+			<%= number_field_tag :amount, 1, min: 1, class: "form-control", placeholder: t('.enter_the_product_amount', default: "Enter the product amount") %>
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
-			<%= f.submit t('.add', default: 'Add a new trade'), class: 'btn btn-primary btn-block', id: 'trade_submit' %>
+			<%= button_tag(type: :submit, class: 'btn btn-primary btn-block', id: 'trade_submit') do %>
+			<%= t('.add', default: 'Add a new trade')%>
+			<% end %>
 		</div>
 	</div>
+	<% end %>
+	<!-- form end -->
+	<%= render 'shared/spinner'%>
+	<!-- resault -->
+	<div id="trades-results">
+		<%= render 'shopping_cart' %>
+	</div>
+	<div id="trades-errors"></div>
 </div>
-<!-- trade products -->
-
-<% end %>

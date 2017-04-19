@@ -1,31 +1,26 @@
 class TradesController < ApplicationController
   before_action :set_trade, only: [:show, :destroy]
-  before_action :set_member, only: [:destroy, :new, :create, :show]
+  before_action :set_member, only: [:destroy, :new, :create, :show, :add_trade_item, :cancel_trade_item]
   before_action :set_today_trades, only: [:new, :create]
   
   def show
     #@today_trades = @trades.order_by(:created_at => 'desc').paginate(page: params[:page]) 
-    @trades = @trades.paginate(page: params[:page])
+    @total = @trades.sum(:total)
   end
   
   def new
     @trade = Trade.new
+    #logger.debug "#{trades_array}--------"
   end
   
   def create
-    @trade = Trade.new(trade_params)
-    #logger.debug "!!!!!!! #{params[:product_id]}"
-    
-    if params[:product_id] != ""
-      # TODO 看有沒有辦法簡化
-      amount = @trade.amount ? @trade.amount.abs : 1
-      @trade.total = @trade.current_price * amount
-      @member.coin -=  @trade.total
-      
+    if trades_array.count > 0
+      @member.coin -=  @total
       if @member.coin >= 0
-        if @trade.save && @member.save
+        if @member.save && Trade.save_array_hash(trades_array, @member.id, current_user.email)
+          delete_trades
           flash[:success] = t('.success', default: 'Trade was successfully created')
-          redirect_to new_trade_path(@member)
+          redirect_to member_path(@member)
         else
           render 'new'
         end
@@ -34,9 +29,10 @@ class TradesController < ApplicationController
         redirect_to new_trade_path(@member)
       end
     else
-      flash[:danger] = t('.product_error', default: 'Please choose a product.')
+      flash[:danger] = t('.add_an_item', default: 'Please add an item.')
       redirect_to new_trade_path(@member)
     end
+    
   end
   
   def destroy
@@ -51,6 +47,53 @@ class TradesController < ApplicationController
     end
   end
   
+  def add_trade_item
+    if params[:product_id] != ""
+      @trades = trades_array
+      has_item = false
+      @trades.each do |trade|
+        if trade["product"] == params[:product]
+          amount = trade["amount"].to_i + params[:amount].to_i
+          total = trade["total"].to_i + (params[:current_price].to_i * params[:amount].to_i)
+          trade["amount"] = amount
+          trade["total"] = total
+          has_item = true
+        end
+      end
+      
+      if !has_item
+        total = params[:current_price].to_i * params[:amount].to_i
+        new_trade = {
+          "trade_date" => params[:trade_date],
+          "product" => params[:product],
+          "current_price" => params[:current_price],
+          "amount" => params[:amount],
+          "total" => total
+        }
+        
+        @trades << new_trade
+        #logger.debug @trades
+      end
+      
+      save_trades(@trades)
+      cal_total
+      
+      render partial: "form"
+    else
+      flash[:danger] = t('.add_an_item', default: 'Please add an item.')
+      redirect_to new_trade_path(@member)
+    end
+  end
+  
+  def cancel_trade_item
+    @trades = trades_array
+    trade = @trades.select {|trade| trade["product"] == params[:product]}
+    @trades.delete(trade[0])
+    save_trades(@trades)
+    cal_total
+    render partial: "form"
+  end
+  
   private
   def set_trade
     @trades = Trade.where(:trade_date => params[:date], :trade_type => params[:type], :member_id => params[:member_id]).order_by(:created_at => 'desc') 
@@ -59,9 +102,24 @@ class TradesController < ApplicationController
     @member = Member.find(params[:member_id] ? params[:member_id] : params[:id])
   end
   def set_today_trades
-    @today_trades = @member.trades.where(trade_date: Date.today, trade_type: "O").order_by(:created_at => 'desc').paginate(page: params[:page]) 
+     @trades = trades_array
+     cal_total
   end
-  def trade_params
-    params.require(:trade).permit(:trade_date, :trade_type, :trade_name, :product, :amount, :current_price, :creator, :member_id)
+  # shopping cart function
+  def save_trades(trades)
+    session["#{@member.phone}"] = (trades.class == Array) ? trades : ''
+  end
+  def trades_array
+    session["#{@member.phone}"] ? session["#{@member.phone}"] : []
+  end
+  def delete_trades
+    session["#{@member.phone}"] = nil
+  end
+  def cal_total
+    @total = 0
+    trades_array.each do |trade|
+       #logger.debug "#{trade["total"]}----"
+       @total += trade["total"].to_i
+     end
   end
 end

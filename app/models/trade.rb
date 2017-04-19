@@ -2,6 +2,7 @@ class Trade
   include Mongoid::Document
   include Mongoid::Timestamps
   
+  
   # relations
   belongs_to :member
   
@@ -45,4 +46,25 @@ class Trade
    return trades.sort_by{ |hsh| hsh[:_id][:trade_date] }.reverse! 
    
   end
+  
+  def self.save_array_hash(arr, member_id, creator)
+    arr.each do |trade|
+      # 做transation
+      new_trade = Trade.new
+      new_trade.trade_date = trade["trade_date"]
+      new_trade.trade_type = "O"
+      new_trade.trade_name = "扣點"
+      new_trade.total = trade["total"]
+      new_trade.product = trade["product"]
+      new_trade.amount = trade["amount"]
+      new_trade.current_price = trade["current_price"]
+      new_trade.creator = creator
+      new_trade.member_id = member_id
+      if !new_trade.save
+        return false
+      end
+    end
+    return true
+  end
+  
 end
