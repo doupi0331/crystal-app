@@ -1,5 +1,16 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => {:registrations => "user/registrations"}
+  devise_for :users, :skip => [:password, :registrations], :controllers => {:registrations => "user/registrations"}
+  as :user do
+
+    get "users/edit" => "user/registrations#edit", :as => :edit_user_registration
+    patch "/users" => "user/registrations#update", :as => :user_registration
+    put "/users" => "user/registrations#update"
+    
+    #get "/users/sign_up" => "user/registrations#new", :as => :new_user_registration
+    #post "/users" => "user/registrations#create"
+  end
+  
+  
   resources :members
   resources :trades, except: [:edit, :update, :new, :create]
   resources :prod_types, except: [:destroy, :show]
