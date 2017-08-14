@@ -10,6 +10,7 @@ init_member_lookup = function() {
 	$('#member-lookup-form').on('ajax:success', function(event, data, status) {
 		$('#member-lookup').replaceWith(data);
 		init_member_lookup();
+		init_link();
 	});
 	$('#member-lookup-form').on('ajax:error', function(event, xhr, status, error){
 		hide_spinner();
@@ -18,20 +19,22 @@ init_member_lookup = function() {
 		//$('#member-lookup-errors').replaceWith(error);
 	})
 }
-
+var init_link;
+init_link = function() {
+	$("tr[data-link]").click(function() {
+    	//alert($(this).data("link"));
+	  	window.location = $(this).data("link");
+	});
+}
 
 $(document).ready(function() {
 	init_member_lookup();
-	
+	init_link();
 	$('.datepicker').datepicker({
           format: "yyyy-mm-dd",
           todayHighlight: true,
           todayBtn: 'linked',
           autoclose: true
-      });
-      
-    $("tr[data-link]").click(function() {
-    	//alert($(this).data("link"));
-	  	window.location = $(this).data("link");
-	});
+    });
 })
+
